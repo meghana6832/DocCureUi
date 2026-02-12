@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Doctors</title>
+</head>
+<body>
+
+<h2>Doctors from Local Storage</h2>
+<button onclick="loadDoctors()">Load Doctors</button>
+
+<div id="doctorList"></div>
+
+<script>
+
+    // If doctors not in localStorage → insert them once
+    if (!localStorage.getItem("doctors")) {
+
+        const doctorsData = [
+    {
+        id: 1,
+        name: "Dr. Keshav Nalam",
+        degree: "MDS - Periodontology and Oral Implantology, BDS",
+        speciality: "Dentist",
+        location: "Florida, USA",
+        img: "../assets/img/doctors/doctor-thumb-01.jpg",
+        service1: "Dental Fillings",
+        service2: "Whitening",
+        likes: "98%",
+        feedback: "17 Feedback",
+        rating: "17",
+        price: "$300 - $1000"
+    },
+    {
+        id: 2,
+        name: "Dr. Meghana Degala",
+        degree: "BDS, MDS - Oral & Maxillofacial Surgery",
+        speciality: "Dentist",
+        location: "New York, USA",
+        img: "../assets/img/doctors/doctor-thumb-02.jpg",
+        service1: "Dental Fillings",
+        service2: "Whitening",
+        likes: "100%",
+        feedback: "35 Feedback",
+        rating: "35",
+        price: "$50 - $300"
+    }
+];
+
+        localStorage.setItem("doctors", JSON.stringify(doctorsData));
+    }
+
+    function loadDoctors() {
+
+        const doctors = JSON.parse(localStorage.getItem("doctors"));
+
+        const container = document.getElementById("doctorList");
+        container.innerHTML = "";
+
+        doctors.forEach(doc => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <h3>${doc.name}</h3>
+                <p>${doc.degree}</p>
+                <p>${doc.speciality}</p>
+                <p>${doc.location}</p>
+                <hr>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+</script>
+</body>
+</html>

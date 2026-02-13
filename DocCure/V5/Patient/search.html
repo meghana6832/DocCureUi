@@ -556,7 +556,7 @@ function loadDoctors() {
         clone.querySelector(".doctor-rating").textContent = doc.rating;
 
         const bookBtn = clone.querySelector(".BookAppointmentClass");
-        bookBtn.href += `?${doc.id}`;
+        bookBtn.href = `booking.html?id=${doc.id}`;
 
         container.appendChild(clone);
     });

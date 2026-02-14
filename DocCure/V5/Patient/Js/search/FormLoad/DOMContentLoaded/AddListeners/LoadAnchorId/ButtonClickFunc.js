@@ -1,5 +1,8 @@
 let StartFunc = () => {
-    console.log("aaaaaaaaa");
+
+	if (window.LoadDoctors) {
+		window.LoadDoctors();
+	}
 
 };
 

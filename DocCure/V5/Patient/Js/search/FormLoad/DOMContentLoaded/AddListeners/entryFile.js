@@ -1,4 +1,4 @@
-import { StartFunc as StartFuncFromLoadAnchorId } from './LoadAnchorId/EntryFile.js';
+import { StartFunc as StartFuncFromLoadAnchorId } from './LoadAnchorId/entryFile.js';
 
 const StartFunc = () => {
 

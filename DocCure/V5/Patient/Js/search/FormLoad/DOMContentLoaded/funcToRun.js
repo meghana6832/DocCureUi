@@ -1,10 +1,10 @@
-import { StartFunc as StartFuncFormAddListeners } from "./AddListeners/entryFile.js";
+import { StartFunc as StartFuncAddListeners } from "./AddListeners/entryFile.js";
 
 const StartFunc = () => {
+
 	const template = document.getElementById("doctorTemplate");
 	const container = document.getElementById("doctorContainer");
 
-	// Insert doctors into localStorage if not already present
 	if (!localStorage.getItem("doctors")) {
 
 		const doctorsData = [
@@ -29,11 +29,12 @@ const StartFunc = () => {
 		];
 
 		localStorage.setItem("doctors", JSON.stringify(doctorsData));
-	};
+	}
 
-	function loadDoctors() {
+	window.LoadDoctors = function () {
 
 		const doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+		console.log("Doctors Data:", doctors);
 		container.innerHTML = "";
 
 		doctors.forEach(doc => {
@@ -47,15 +48,15 @@ const StartFunc = () => {
 			clone.querySelector(".doctor-location").append(doc.location);
 			clone.querySelector(".doctor-rating").textContent = doc.rating;
 
-			const bookBtn = clone.querySelector(".BookAppointmentClass");
-			bookBtn.href = `booking.html?id=${doc.id}`;
+			clone.querySelector(".BookAppointmentClass").href =
+				`booking.html?id=${doc.id}`;
 
 			container.appendChild(clone);
 		});
 	};
 
-	loadDoctors();
-	StartFuncFormAddListeners();
+	StartFuncAddListeners();
+	window.LoadDoctors();
 };
 
 export { StartFunc };
